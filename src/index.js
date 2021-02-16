@@ -1,13 +1,17 @@
-import React from "react";
+import { Fragment } from "react";
 import ReactDOM  from "react-dom";
 
 // Components
 import Header from "./Components/Header";
+import ContactList from "./Components/ContactList";
 
 const App = () => {
  
     return(
-      <Header />
+      <Fragment>
+        <Header />
+        <ContactList />
+      </Fragment>
     );
 }
 
