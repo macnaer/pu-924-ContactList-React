@@ -6,10 +6,18 @@ import ContactItem from "./ContactItem";
 const ContactList = () => {
     return(
         <Fragment>
-            <h2>Contact List</h2>
-            <ContactItem />
-            <ContactItem />
-            <ContactItem />
+            <div className="row">
+                <div className="col-md-6">
+                    <h3>All Contacts</h3>
+                 </div>
+                <div className="col-md-6">
+                    <button type="button" className="btn btn-green btn-raised btn-add-new-contact"><span className="icon-plus" data-toggle="modal" data-target="#modal-pull-right-add"> Add New Contact</span></button>
+                </div>
+            </div>
+            <div className="list-group contact-group">
+                 <ContactItem />
+            </div>
+           
         </Fragment>
         
     );
