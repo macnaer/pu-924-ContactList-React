@@ -11,17 +11,27 @@ import Favorites from "./Components/Favorites";
 
 class App extends Component {
 
-
   state = {
-    ContactList:[
+    List:[
       {
         "Name": "John",
         "Surname": "Doe",
         "Avatar": "https://bootdey.com/img/Content/avatar/avatar1.png",
         "Position": ".NEt Software Engeneer",
         "NickName": "john.doe",
+        "Address": "Rivne Soborna street",
         "Phone": "+63 87 789 123",
         "Email": "jd@gmail.com"
+      },
+       {
+        "Name": "Richard",
+        "Surname": "Sallivan",
+        "Avatar": "https://bootdey.com/img/Content/avatar/avatar1.png",
+        "Position": "JS Developer",
+        "NickName": "js.rich",
+        "Address": "Vinnuchya",
+        "Phone": "+98 123 456 78",
+        "Email": "jj@gmail.com"
       }
     ]
   }
@@ -39,7 +49,17 @@ class App extends Component {
                 </div>
                 <div className="col-md-9">
                   <Search />
-                  <ContactList />
+                   <div className="row">
+                  <div className="col-md-6">
+                      <h3>All Contacts</h3>
+                  </div>
+                  <div className="col-md-6">
+                      <button type="button" className="btn btn-green btn-raised btn-add-new-contact"><span className="icon-plus" data-toggle="modal" data-target="#modal-pull-right-add"> Add New Contact</span></button>
+                  </div>
+            </div>
+            <div className="list-group contact-group">
+                  <ContactList List={this.state.List} />
+                  </div>
                 </div>
               </div>
           </div>
