@@ -1,0 +1,7 @@
+.favorite {
+  cursor: pointer;
+}
+.list-group-item .list-unstyled .favorite::before {
+  color: gold;
+  font-size: 28px;
+}

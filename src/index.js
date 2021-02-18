@@ -40,10 +40,14 @@ class App extends Component {
       }
     ]
   }
+
+  onFavorite = (id) =>{
+    console.log("onFavorite ",id);
+  }
   
-    render(){
-      return(
-        <Fragment>
+  render(){
+    return(
+      <Fragment>
           <div className="container-fluid page-people-directory">
               <div className="row">
                 <div className="col-md-12" ><Header/></div>
@@ -63,7 +67,7 @@ class App extends Component {
                   </div>
             </div>
             <div className="list-group contact-group">
-                  <ContactList List={this.state.List} />
+                  <ContactList List={this.state.List} onFavorite={this.onFavorite} />
                   </div>
                 </div>
               </div>
