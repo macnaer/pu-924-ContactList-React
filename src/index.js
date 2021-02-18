@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './style.css';
 import React, { Fragment, Component } from "react";
 import ReactDOM  from "react-dom";
+import uuidv4 from 'react-uuid'
 
 // Components
 import Header from "./Components/Header";
@@ -14,6 +15,7 @@ class App extends Component {
   state = {
     List:[
       {
+        "Id": uuidv4(),
         "Name": "John",
         "Surname": "Doe",
         "Avatar": "https://bootdey.com/img/Content/avatar/avatar1.png",
@@ -21,9 +23,11 @@ class App extends Component {
         "NickName": "john.doe",
         "Address": "Rivne Soborna street",
         "Phone": "+63 87 789 123",
-        "Email": "jd@gmail.com"
+        "Email": "jd@gmail.com",
+        "Favorite": false
       },
        {
+        "Id": uuidv4(),
         "Name": "Richard",
         "Surname": "Sallivan",
         "Avatar": "https://bootdey.com/img/Content/avatar/avatar1.png",
@@ -31,7 +35,8 @@ class App extends Component {
         "NickName": "js.rich",
         "Address": "Vinnuchya",
         "Phone": "+98 123 456 78",
-        "Email": "jj@gmail.com"
+        "Email": "jj@gmail.com",
+        "Favorite": true
       }
     ]
   }
