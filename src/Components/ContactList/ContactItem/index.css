@@ -5,3 +5,7 @@
   color: gold;
   font-size: 28px;
 }
+.page-people-directory .list-unstyled .trash::before{
+  color: red;
+  cursor: pointer;
+}

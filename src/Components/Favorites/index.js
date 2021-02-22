@@ -3,7 +3,8 @@ import React, { Fragment } from "react";
 const Favorites = () =>{
     return(
         <Fragment>
-            <h5><b>My Favorites</b></h5>
+             <div className="col-md-3">
+             <h5><b>My Favorites</b></h5>
             <div className="list-group people-group">
                 <a href="#" className="list-group-item">
                     <div className="media">
@@ -17,6 +18,8 @@ const Favorites = () =>{
                     </div>
                 </a>
             </div>
+             </div>
+            
         </Fragment>
     );
 } 

@@ -2,13 +2,20 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './style.css';
 import React, { Fragment, Component } from "react";
 import ReactDOM  from "react-dom";
-import uuidv4 from 'react-uuid'
+import uuidv4 from 'react-uuid';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 // Components
 import Header from "./Components/Header";
 import ContactList from "./Components/ContactList";
 import Search from "./Components/Search";
 import Favorites from "./Components/Favorites";
+import AddNewContact from "./Components/AddNewContact";
 
 class App extends Component {
 
@@ -42,7 +49,6 @@ class App extends Component {
   }
 
   onFavorite = (Id) =>{
-    console.log("onFavorite ",Id);
     const index = this.state.List.findIndex((elem) => elem.Id === Id);
     const tmpList = this.state.List.slice();
     tmpList[index].Favorite = !tmpList[index].Favorite;
@@ -53,6 +59,17 @@ class App extends Component {
     })
   }
   
+  onDelete = (Id) => {
+    const index = this.state.List.findIndex((elem) => elem.Id === Id);
+    const partOne = this.state.List.slice(0, index);
+    const partTwo = this.state.List.slice(index + 1);
+    const newList = [...partOne, ...partTwo];
+    this.setState(() => {
+      return {
+        List: newList,
+      };
+    });
+  }
   render(){
     return(
       <Fragment>
@@ -60,26 +77,17 @@ class App extends Component {
               <div className="row">
                 <div className="col-md-12" ><Header/></div>
               </div>
-              <div className="row">
-                <div className="col-md-3">
                   <Favorites />
-                </div>
-                <div className="col-md-9">
-                  <Search />
-                   <div className="row">
-                  <div className="col-md-6">
-                      <h3>All Contacts</h3>
-                  </div>
-                  <div className="col-md-6">
-                      <button type="button" className="btn btn-green btn-raised btn-add-new-contact"><span className="icon-plus" data-toggle="modal" data-target="#modal-pull-right-add"> Add New Contact</span></button>
-                  </div>
+                 
+                <Router>
+                <Search />
+                  <Switch>
+                    <Route path="/"  exact render={() => <ContactList List={this.state.List} onFavorite={this.onFavorite} onDelete={this.onDelete} />}  />
+                    <Route path="/add-new" exact component={AddNewContact} />
+                  </Switch>
+                </Router>
+              
             </div>
-            <div className="list-group contact-group">
-                  <ContactList List={this.state.List} onFavorite={this.onFavorite} />
-                  </div>
-                </div>
-              </div>
-          </div>
         </Fragment>
       );
     }

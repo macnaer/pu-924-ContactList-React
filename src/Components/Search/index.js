@@ -1,16 +1,19 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 const Search = () => {
     return(
-        <div className="well">
-            <div className="row">
-                <div className="col-md-9">
-                    <input type="text" placeholder="Search people" className="form-control" />
-                    </div>
-            </div>
-            <br />
+        <Fragment>
+       
+        <div className="row">
+                  <div className="col-md-6">
+                      <h3>All Contacts</h3>
+                  </div>
+                  <div className="col-md-6">
+                      <Link to="/add-new" className="btn btn-green btn-raised btn-add-new-contact"><span className="icon-plus" data-toggle="modal" data-target="#modal-pull-right-add"> Add New Contact</span></Link>
+                </div>
         </div>
-      
+        </Fragment>
     )
 }
 
