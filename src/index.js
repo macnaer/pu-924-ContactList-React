@@ -73,7 +73,12 @@ class App extends Component {
   }
 
   onAddNewContact = (newContact) => {
-    console.log("onAddNewContact => ", newContact);
+    const newList = [...this.state.List, newContact];
+    this.setState((state) => {
+      return {
+        List: newList,
+      };
+    });
   }
   render(){
     return(

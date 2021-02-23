@@ -1,5 +1,6 @@
 import React, {Fragment} from "react";
 import uuidv4 from 'react-uuid';
+import { Redirect } from "react-router-dom";
 
 
 class AddNewContact extends React.Component {
@@ -13,7 +14,8 @@ class AddNewContact extends React.Component {
         "Address": "",
         "Phone": "",
         "Email": "", 
-        "Favorite": false,    
+        "Favorite": false,
+        "isRedirect": false
     }
 
     getName = (e) => {
@@ -91,11 +93,16 @@ class AddNewContact extends React.Component {
         }
         const { onAddNewContact } = this.props;
         onAddNewContact(newContact);
+        this.setState({
+            "isRedirect": true
+        })
     }
     
 
     render(){
-        
+        if (this.state.isRedirect) {
+            return <Redirect to="/" />;
+          }
         return(
             <Fragment>
             <div className="container">
