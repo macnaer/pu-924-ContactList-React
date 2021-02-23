@@ -16,6 +16,7 @@ import ContactList from "./Components/ContactList";
 import Search from "./Components/Search";
 import Favorites from "./Components/Favorites";
 import AddNewContact from "./Components/AddNewContact";
+import NotFound from "./Components/NotFound";
 
 class App extends Component {
 
@@ -84,9 +85,9 @@ class App extends Component {
                   <Switch>
                     <Route path="/"  exact render={() => <ContactList List={this.state.List} onFavorite={this.onFavorite} onDelete={this.onDelete} />}  />
                     <Route path="/add-new" exact component={AddNewContact} />
+                    <Route component={NotFound} />
                   </Switch>
                 </Router>
-              
             </div>
         </Fragment>
       );
