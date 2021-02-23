@@ -71,6 +71,10 @@ class App extends Component {
       };
     });
   }
+
+  onAddNewContact = (newContact) => {
+    console.log("onAddNewContact => ", newContact);
+  }
   render(){
     return(
       <Fragment>
@@ -84,7 +88,7 @@ class App extends Component {
                 <Search />
                   <Switch>
                     <Route path="/"  exact render={() => <ContactList List={this.state.List} onFavorite={this.onFavorite} onDelete={this.onDelete} />}  />
-                    <Route path="/add-new" exact component={AddNewContact} />
+                    <Route path="/add-new" exact component={() => <AddNewContact onAddNewContact={this.onAddNewContact} />} />
                     <Route component={NotFound} />
                   </Switch>
                 </Router>

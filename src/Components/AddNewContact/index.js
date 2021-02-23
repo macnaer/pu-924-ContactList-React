@@ -89,7 +89,8 @@ class AddNewContact extends React.Component {
             "Email": this.state.Email,
             "Favorite": this.state.Favorite
         }
-        console.log(newContact);
+        const { onAddNewContact } = this.props;
+        onAddNewContact(newContact);
     }
     
 
