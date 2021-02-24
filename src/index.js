@@ -75,13 +75,15 @@ class App extends Component {
   }
 
   onAddNewContact = (newContact) => {
-    this.onSaveData(newContact);
+    
     const newList = [...this.state.List, newContact];
+    this.onSaveData(newList);
     this.setState((state) => {
       return {
         List: newList,
       };
     });
+   
   }
 
   onSaveData = (newContact) => {
