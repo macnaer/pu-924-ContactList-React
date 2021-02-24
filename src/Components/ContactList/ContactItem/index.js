@@ -2,6 +2,26 @@ import React from "react";
 import "./index.css";
 
 class ContactItem extends React.Component {
+
+    // shouldComponentUpdate(nextProps, nextState){
+    //     console.log("shouldComponentUpdate");
+    //     console.log("nextState ", nextState);
+    //     console.log("nextProps ", nextProps);
+    //     // if (nextProps.Avatar === nextState.Avatar){
+    //     //     return true;
+    //     // }
+    //     // else{
+    //     //     return false;
+    //     // }
+    //     return true;
+    //   }
+
+    //   componentDidUpdate(){
+    //       console.log("componentDidUpdate");
+    //   }
+    //   componentWillUnmount(){
+    //       console.log("componentWillUnmount")
+    //   }
   
   render(){
 ;

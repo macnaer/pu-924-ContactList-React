@@ -20,34 +20,36 @@ import NotFound from "./Components/NotFound";
 
 class App extends Component {
 
+  URL = "https://contactpu-f0afd-default-rtdb.firebaseio.com/list.json"
+
   state = {
-    List:[
-      {
-        "Id": uuidv4(),
-        "Name": "John",
-        "Surname": "Doe",
-        "Avatar": "https://bootdey.com/img/Content/avatar/avatar1.png",
-        "Position": ".NEt Software Engeneer",
-        "NickName": "john.doe",
-        "Address": "Rivne Soborna street",
-        "Phone": "+63 87 789 123",
-        "Email": "jd@gmail.com",
-        "Favorite": false
-      },
-       {
-        "Id": uuidv4(),
-        "Name": "Richard",
-        "Surname": "Sallivan",
-        "Avatar": "https://bootdey.com/img/Content/avatar/avatar1.png",
-        "Position": "JS Developer",
-        "NickName": "js.rich",
-        "Address": "Vinnuchya",
-        "Phone": "+98 123 456 78",
-        "Email": "jj@gmail.com",
-        "Favorite": true
-      }
-    ]
+    List:[]
   }
+
+
+  componentDidMount(){
+    this.updateContacts();
+  }
+
+  async updateContacts(){
+   await fetch(this.URL)
+    .then(responce => {
+      return responce.json()
+    })
+    .then(data => {
+      if (data == null) {
+        this.setState({
+          List: [],
+        });
+      } else {
+        this.setState({
+          List: data,
+        });
+      }
+    })
+    .catch(err => console.log(err));
+  }
+ 
 
   onFavorite = (Id) =>{
     const index = this.state.List.findIndex((elem) => elem.Id === Id);
@@ -73,12 +75,23 @@ class App extends Component {
   }
 
   onAddNewContact = (newContact) => {
+    this.onSaveData(newContact);
     const newList = [...this.state.List, newContact];
     this.setState((state) => {
       return {
         List: newList,
       };
     });
+  }
+
+  onSaveData = (newContact) => {
+    fetch(this.URL, {
+      "method": "PUT",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newContact)
+    })
   }
   render(){
     return(
