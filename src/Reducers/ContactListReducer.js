@@ -8,7 +8,6 @@ const initialState = {
 const ContactListReducer = (state=initialState, action ) => {
     switch (action.type) {
         case "LOAD_CONTACT_LIST":
-          console.log("Reducer => ", action.payload);
           return {
             ...state,
             loading: false,
@@ -21,9 +20,7 @@ const ContactListReducer = (state=initialState, action ) => {
         //     currentContact: action.payload,
         //   };
         default:
-          return {
-            state,
-          };
+          return state
       }
 }
 export default ContactListReducer;

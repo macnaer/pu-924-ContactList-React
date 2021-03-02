@@ -24,7 +24,6 @@ class ContactItem extends React.Component {
     //   }
   
   render(){
-;
     const { Id, Name, Surname, Avatar, Address, Position, NickName, Phone, Email,
          Favorite, onFavorite, onDelete } = this.props;
     return(

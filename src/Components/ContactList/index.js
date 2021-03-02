@@ -5,36 +5,26 @@ import { getContactList } from "../../Actions/ContactListActions";
 // Contact Item Component
 import ContactItem from "./ContactItem";
 
+// Include service
+import { getAllContacts } from "./../../Services/api-service";
+
 class ContactList extends React.Component {
 
     
-  URL = "https://contactpu-f0afd-default-rtdb.firebaseio.com/list.json"
+
     
   componentDidMount(){
-    this.updateContacts();
-  }
-
-  async updateContacts(){
-
     const { getContactList, loading } = this.props;
     console.log("this.props ", this.props);
-
-   await fetch(this.URL)
-    .then(responce => {
-      return responce.json()
-    })
+    getAllContacts()
     .then(data => {
-      if (data == null) {
-        loading
-        console.log(loading);
-        getContactList(data);
-      } else {
-       
-      }
+      console.log("responce ", data);
+      getContactList(data)
     })
     .catch(err => console.log(err));
+   
   }
- 
+
 
   onFavorite = (Id) =>{
     const index = this.state.List.findIndex((elem) => elem.Id === Id);
@@ -83,15 +73,17 @@ class ContactList extends React.Component {
    
   render(){
       console.log("ContactList => ", this.props);
-        // const contact = List.map(item => {
-    //     return <ContactItem key={item.Id} Id={item.Id} Name={item.Name} Surname={item.Surname} Address={item.Address} Avatar={item.Avatar}
-    //      Position={item.Position} NickName={item.NickName} Phone={item.Phone} Email={item.Email}
-    //     Favorite={item.Favorite} onFavorite={() => onFavorite(item.Id)} onDelete={() => onDelete(item.Id)} />;
-    // } )
+      const { List } =  this.props;
+      console.log("List => ", List);
+    
     return(
         <Fragment>
             <div className="list-group contact-group">
-                {/* {contact.length !== 0 ? contact : <h2>Contacts not found</h2>} */}
+                {List.length !== 0 ? ( List.map(item => {
+        return <ContactItem key={item.Id} Id={item.Id} Name={item.Name} Surname={item.Surname} Address={item.Address} Avatar={item.Avatar}
+         Position={item.Position} NickName={item.NickName} Phone={item.Phone} Email={item.Email}
+         />;
+    } )) : <h2>Contacts not found</h2>}
             </div>
         </Fragment>
         
