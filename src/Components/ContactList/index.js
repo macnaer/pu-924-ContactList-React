@@ -18,8 +18,11 @@ class ContactList extends React.Component {
     console.log("this.props ", this.props);
     getAllContacts()
     .then(data => {
-      console.log("responce ", data);
-      getContactList(data)
+      if (data.length > 0){
+        console.log("responce ", data);
+        getContactList(data)
+      }
+    
     })
     .catch(err => console.log(err));
    
@@ -53,7 +56,7 @@ class ContactList extends React.Component {
     
     const newList = [...this.state.List, newContact];
     this.onSaveData(newList);
-    this.setState((state) => {
+    this.setState(() => {
       return {
         List: newList,
       };
@@ -62,6 +65,7 @@ class ContactList extends React.Component {
   }
 
   onSaveData = (newContact) => {
+    console.log("onSaveData ", newContact)
     fetch(this.URL, {
       "method": "PUT",
       headers: {
@@ -72,9 +76,7 @@ class ContactList extends React.Component {
   }
    
   render(){
-      console.log("ContactList => ", this.props);
       const { List } =  this.props;
-      console.log("List => ", List);
     
     return(
         <Fragment>
@@ -92,7 +94,6 @@ class ContactList extends React.Component {
 }
 
 const mapStateToProps = ({ contactListReducer }) => {
-    console.log("mapStateToProps ", contactListReducer);
     const { List, loading } = contactListReducer;
     return { List, loading };
   };

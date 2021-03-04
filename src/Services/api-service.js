@@ -1,16 +1,32 @@
 URL = "https://contactpu-f0afd-default-rtdb.firebaseio.com/list.json";
 
 export async function  getAllContacts() {
-    const allContacts = await fetch(URL)
-    .then(responce => {
-      return responce.json()
+    const List = await fetch(URL)
+    .then((responce) => {
+      return responce.json();
     })
-    .then(data => {
-        console.log("DATA => ", data);
-        return data;
+    .then((data) => {
+        console.log("data data data ", data)
+      if (data == null) {
+        return {
+          List: [],
+        };
+      } else {
+        return {
+          List: data,
+        };
+      }
     })
-    .catch(err => {
-        return err;
-    });
-    return allContacts;
+    .catch((err) => console.log(err));
+  return List;
+}
+
+export async function onAddNewContact(newContact){
+    await fetch(URL, {
+        method: "PUT",
+        headers:{
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newContact),
+    })
 }

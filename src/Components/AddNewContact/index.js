@@ -1,5 +1,7 @@
 import React, {Fragment} from "react";
 import uuidv4 from 'react-uuid';
+import { connect } from "react-redux";
+import { onAddNewContact } from "../../Services/api-service";
 import { Redirect } from "react-router-dom";
 
 
@@ -91,8 +93,9 @@ class AddNewContact extends React.Component {
             "Email": this.state.Email,
             "Favorite": this.state.Favorite
         }
-        const { onAddNewContact } = this.props;
-        onAddNewContact(newContact);
+        const { List } = this.props;
+        List.push(newContact);
+        onAddNewContact(List);
         this.setState({
             "isRedirect": true
         })
@@ -186,5 +189,9 @@ class AddNewContact extends React.Component {
         )
     }
 }
+const mapStateToProps = ({ contactListReducer }) => {
+    const { List } = contactListReducer;
+    return { List };
+  };
 
-export default AddNewContact;
+export default connect(mapStateToProps)(AddNewContact);
