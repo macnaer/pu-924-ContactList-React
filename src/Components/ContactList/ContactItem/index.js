@@ -24,13 +24,15 @@ class ContactItem extends React.Component {
     //   }
   
   render(){
+
     const { Id, Name, Surname, Avatar, Address, Position, NickName, Phone, Email,
-         Favorite, onFavorite, onDelete } = this.props;
+         Favorite, onFavorite, onDelete, Gender } = this.props;
+    const URL = `https://randomuser.me/api/portraits/women/${Avatar}.jpg`;
     return(
         <div className="list-group-item">
             <div className="media">
                 <div className="pull-left">
-                    <img className="img-circle" src={Avatar} alt="..." />
+                    <img className="img-circle" src={URL} alt="..." />
                 </div>
                 <div className="media-body">
                     <h4 className="media-heading"> {Name} {Surname} <small>{Position}</small></h4>

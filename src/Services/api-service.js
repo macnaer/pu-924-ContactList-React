@@ -18,6 +18,7 @@ export async function  getAllContacts() {
       }
     })
     .catch((err) => console.log(err));
+  console.log("getAllContacts ", List);
   return List;
 }
 

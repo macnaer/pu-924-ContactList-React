@@ -11,17 +11,13 @@ import { getAllContacts } from "./../../Services/api-service";
 class ContactList extends React.Component {
 
     
-
-    
   componentDidMount(){
     const { getContactList, loading } = this.props;
     console.log("this.props ", this.props);
     getAllContacts()
     .then(data => {
-      if (data.length > 0){
-        console.log("responce ", data);
-        getContactList(data)
-      }
+      console.log("componentDidMount data ", data)
+      getContactList(data.List);
     
     })
     .catch(err => console.log(err));
@@ -94,6 +90,7 @@ class ContactList extends React.Component {
 }
 
 const mapStateToProps = ({ contactListReducer }) => {
+    console.log("mapStateToProps ", contactListReducer);
     const { List, loading } = contactListReducer;
     return { List, loading };
   };

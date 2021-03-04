@@ -103,6 +103,7 @@ class AddNewContact extends React.Component {
     
 
     render(){
+
         if (this.state.isRedirect) {
             return <Redirect to="/" />;
           }
